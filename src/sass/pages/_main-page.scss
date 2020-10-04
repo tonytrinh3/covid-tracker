@@ -1,0 +1,22 @@
+.booking-page {
+    display: grid;
+
+    // grid-template-columns:[pile-start-column] minmax(22.6rem,1fr) 
+    // [pile-end-column play-area-start-column] minmax(50vw,2fr)
+    // [play-area-end-column deck-start-column] minmax(22.6rem,1fr)  [deck-end-column];
+
+    grid-template-columns: [full-start] minmax(6rem, 1fr) 
+    [center-start] repeat(8, [col-start] minmax(min-content,14rem) [col-end]) [center-end] 
+    minmax(6rem, 1fr) [full-end];
+
+
+    @media only screen and (max-width:$bp-largest){
+        grid-template-columns: [full-start] 2rem 
+        [center-start] repeat(8, [col-start] minmax(min-content,1fr) [col-end]) [center-end] 
+        2rem [full-end];
+      }
+  
+
+
+
+}

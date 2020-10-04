@@ -1,0 +1,54 @@
+//font
+$default-font-size: 2rem;
+
+// $default-card-country-header-size: 2rem;
+
+// $default-font-rating-size: 2.3rem;
+
+
+//color
+$default-font-color:rgb(51, 51, 51);
+
+$default-landing-page-color: rgba(0, 0, 0, 1);
+
+//https://usbrandcolors.com/airbnb-colors/
+$airbnb-default-color:rgba(255, 90, 95,1);
+$airbnb-default-color-light-grey:  rgba(118, 118, 118, 1);
+$airbnb-default-color-light-grey-hover:  lighten($airbnb-default-color-light-grey,40%);
+$airbnb-default-blue:rgba(0, 166, 153,1);
+$airbnb-default-orange:rgba(252, 100, 45,1);
+$airbnb-default-purple:rgba(116, 79, 149,1);
+
+$nav-font-color: white;
+
+$form-input-color: rgba(118, 118, 118, 1);
+
+//shadow
+/* offset-x | offset-y | blur-radius | spread-radius | color */
+//https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+//https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_box-shadow
+$default-box-shadow: 0rem 0rem 2rem .1rem rgba(72, 72, 72, .4); 
+
+
+
+
+//border
+$picture-border-radius-small: 1rem;
+
+$picture-border-radius-medium:1.5rem;
+
+$picture-border-radius-large:2rem;
+
+//grid gap
+$default-grid-column-gap: 3rem;
+
+//RESPONSE BREAKPOINTS
+$bp-largest-2: 132em; //1920 px /16
+$bp-largest: 87em; //1350 px /16
+$bp-large: 68.75em; //1100 px /16 for ipad pro
+$bp-medium: 50em; //800 px / 16 for ipad 
+$bp-small-2: 37.5em; //800 px / 16 for ipad 
+$bp-small: 26.25em; //420 px / 16 for pixel 2 xl
+
+$bp-hei-small: 37.5em; //600 px / 16 for iphone 5
+$bp-hei-small-2: 40em; //640 px / 16 for moto g4

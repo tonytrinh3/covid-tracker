@@ -1,0 +1,76 @@
+body {
+    font-family: 'Montserrat', sans-serif; //https://fonts.google.com/specimen/Montserrat?selection.family=Montserrat:300,400,500,600,700,800,900
+    font-weight: 400;
+    line-height: 1.3; //16px size with a 23px line height
+    color: $default-font-color;
+    
+}
+
+.header-small{ 
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+
+
+//header for all big words on main page
+.header-big{
+    font-weight: 600;
+    font-size: 3.5rem;
+
+}
+
+//not usedd
+// .header-big-sub{
+//     font-weight: 400;
+//     font-size: 2.5rem;
+    
+// }
+
+//used in explore airbnb front page
+.header-medium{ 
+    font-weight: 700;
+    font-size: 2.3rem;
+  
+}
+
+.text-sub{
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.rating-font{
+    font-size:2.3rem;
+    font-weight:500;
+}
+
+
+.continue-link{
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.continue-link::after{
+    content: " \21C0";
+    font-size: 2rem;
+    align-self: center;
+}
+
+
+.booking-page__link{
+    font-weight: 600;
+    color: $airbnb-default-blue;
+    text-decoration: none;
+}
+
+.p-bold{ //used in booking page
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.error-statement{
+    color: red;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-align: center;
+}
