@@ -13,7 +13,7 @@ const calculateDistance = (lat1,lon1,lat2,lon2)=>{
     
     const d = R * c; // in metres
 
-    return console.log(d);
+    return d;
   }
 
   export default calculateDistance;

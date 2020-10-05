@@ -1,39 +1,52 @@
-import React, { useState,useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import googleMarker from "./googleMarker";
-import radiusCircle from './radiusCircle';
-import calculateDistance from './calculateDistance';
+import radiusCircle from "./radiusCircle";
+import calculateDistance from "./calculateDistance";
 
-
-const GoogleMap =()=> {
-
-  const[ctrCoord,setCtrCoord]= useState({lat:37.795932, lng:-122.393710});
+const GoogleMap = () => {
+  const [ctrCoord, setCtrCoord] = useState({ lat: 37.795932, lng: -122.39371 });
 
   //TODO: to need change map zoom based on radius
-  const[radiusState,setradiusState]= useState(500); //radius map in meters
+  const [radiusState, setradiusState] = useState(500); //radius map in meters
 
   const googleMapRef = useRef();
 
-  const ozumo = {lat:37.792649, lng:-122.392221};
-  const philz = {lat:37.791703,lng:-122.399151 };
+  const ozumo = { lat: 37.792649, lng: -122.392221 };
+  const philz = { lat: 37.791703, lng: -122.399151 };
 
-  useEffect(()=>{
+  const covidMarkers = [
+    { lat: 37.792649, lng: -122.392221 },
+    { lat: 37.791703, lng: -122.399151 },
+    { lat: 37.792604, lng: -122.392988 },
+  ];
+
+  useEffect(() => {
     //just adding the google map script to the html body
     const googleMapScript = document.createElement("script");
     googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP}&libraries=places`;
     window.document.body.appendChild(googleMapScript);
 
     googleMapScript.addEventListener("load", () => {
-        console.log("loaded");
-        const googleMap = createGoogleMap();
-        googleMarker(googleMap,ctrCoord.lat,ctrCoord.lng);
-        googleMarker(googleMap,ozumo.lat,ozumo.lng);
-        googleMarker(googleMap,37.792604,-122.392988);
-        radiusCircle(googleMap,ctrCoord.lat,ctrCoord.lng,radiusState);
-        calculateDistance(ctrCoord.lat,ctrCoord.lng,ozumo.lat,ozumo.lng)
-      });
-  })
+      console.log("loaded");
+      const googleMap = createGoogleMap();
+      googleMarker(googleMap, ctrCoord.lat, ctrCoord.lng);
+      renderMarkers(googleMap, ctrCoord, covidMarkers);
+      radiusCircle(googleMap, ctrCoord.lat, ctrCoord.lng, radiusState);
+    });
+  });
 
-
+  const renderMarkers = (map, centerPt, markers) => {
+    return markers.map((pt) => {
+      //if the distance of the markers are within the radius, then it get render
+      if (
+        calculateDistance(centerPt.lat, centerPt.lng, pt.lat, pt.lng) <=
+        radiusState
+      ) {
+        return googleMarker(map, pt.lat, pt.lng);
+      }
+      return null;
+    });
+  };
 
   const createGoogleMap = () =>
     //googleMapRef.current access the ref - similar to document.getElementById
@@ -43,25 +56,16 @@ const GoogleMap =()=> {
         lat: ctrCoord.lat,
         lng: ctrCoord.lng,
       },
-    //   disableDefaultUI: true,
+      //   disableDefaultUI: true,
     });
 
-  
-    return (
-      <div
-        className="google-map"
-        ref={googleMapRef}
-      ></div>
-    );
-
-}
+  return <div className="google-map" ref={googleMapRef}></div>;
+};
 
 export default GoogleMap;
 
-
-      // },[latState,lngState]);
-  //need to fix to get map to render once and wait to get the lng and lat of location
-  
+// },[latState,lngState]);
+//need to fix to get map to render once and wait to get the lng and lat of location
 
 //   const getLocation = ()=>{
 //     navigator.geolocation.getCurrentPosition(function(position) {
