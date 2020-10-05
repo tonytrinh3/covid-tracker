@@ -1,7 +1,7 @@
-const googleMarker = (googleMap,markerLat,markerLng) =>{
+const googleMarker = (map,markerLatLng) =>{
     new window.google.maps.Marker({
-        position: { lat: markerLat, lng: markerLng },
-        map: googleMap,
+        position: { lat: markerLatLng.lat, lng: markerLatLng.lng },
+        map: map,
       });
 
 

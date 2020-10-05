@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-import googleMarker from "./googleMarker";
-import radiusCircle from "./radiusCircle";
-import calculateDistance from "./calculateDistance";
+import googleMarker from "./tools/googleMarker";
+import renderMarkers from './tools/renderMarkers';
+import radiusCircle from "./tools/radiusCircle";
+import changeCenter from './tools/changeCenter';
+import zoomListener from './tools/zoomListener';
+
 
 const GoogleMap = () => {
   const [ctrCoord, setCtrCoord] = useState({ lat: 37.795932, lng: -122.39371 });
 
   //TODO: to need change map zoom based on radius
-  const [radiusState, setradiusState] = useState(500); //radius map in meters
+  const [radiusState, setRadiusState] = useState(500); //radius map in meters
+  const [zoomState, setZoomState] = useState(16); //radius map in meters
 
   const googleMapRef = useRef();
-
-  const ozumo = { lat: 37.792649, lng: -122.392221 };
-  const philz = { lat: 37.791703, lng: -122.399151 };
 
   const covidMarkers = [
     { lat: 37.792649, lng: -122.392221 },
@@ -27,37 +28,32 @@ const GoogleMap = () => {
     window.document.body.appendChild(googleMapScript);
 
     googleMapScript.addEventListener("load", () => {
-      console.log("loaded");
       const googleMap = createGoogleMap();
-      googleMarker(googleMap, ctrCoord.lat, ctrCoord.lng);
-      renderMarkers(googleMap, ctrCoord, covidMarkers);
-      radiusCircle(googleMap, ctrCoord.lat, ctrCoord.lng, radiusState);
+      googleMarker(googleMap, ctrCoord);
+      renderMarkers(googleMap, ctrCoord, covidMarkers,radiusState);
+      radiusCircle(googleMap, ctrCoord, radiusState);
+      changeCenter(googleMap,ctrCoord,setCtrCoord);
+      zoomListener(googleMap,setZoomState);
+
     });
   });
 
-  const renderMarkers = (map, centerPt, markers) => {
-    return markers.map((pt) => {
-      //if the distance of the markers are within the radius, then it get render
-      if (
-        calculateDistance(centerPt.lat, centerPt.lng, pt.lat, pt.lng) <=
-        radiusState
-      ) {
-        return googleMarker(map, pt.lat, pt.lng);
-      }
-      return null;
-    });
-  };
 
-  const createGoogleMap = () =>
+ 
+
+  const createGoogleMap = () =>{
     //googleMapRef.current access the ref - similar to document.getElementById
-    new window.google.maps.Map(googleMapRef.current, {
-      zoom: 16,
-      center: {
-        lat: ctrCoord.lat,
-        lng: ctrCoord.lng,
-      },
-      //   disableDefaultUI: true,
-    });
+    return new window.google.maps.Map(googleMapRef.current, {
+        zoom: zoomState,
+        center: {
+          lat: ctrCoord.lat,
+          lng: ctrCoord.lng,
+        },
+        //   disableDefaultUI: true,
+      });
+  }
+
+
 
   return <div className="google-map" ref={googleMapRef}></div>;
 };
