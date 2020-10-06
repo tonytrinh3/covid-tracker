@@ -1,9 +1,9 @@
 import { ADD_CASES, SUBTRACT_CASES } from "../actions/types";
 
 const INITIAL_STATE = [
-  { lat: 37.792649, lng: -122.392221 },
-  { lat: 37.791703, lng: -122.399151 },
-  { lat: 37.792604, lng: -122.392988 },
+  { id: 1,lat: 37.792649, lng: -122.392221 },
+  { id: 2,lat: 37.791703, lng: -122.399151 },
+  { id: 3,lat: 37.792604, lng: -122.392988 },
 ];
 
 export default (state = INITIAL_STATE, action) => {

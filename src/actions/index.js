@@ -3,19 +3,38 @@ import {
   SUBTRACT_CASES,
   CHANGE_USER_CENTER_T,
   CHANGE_USER_CENTER_F,
+  ADD_USER_COVID_REPORT,
+  SUBTRACT_USER_COVID_REPORT,
+  INCREASE_ID_COVID_DATA,
 } from "./types";
 
 export const changeCenterTrue = () => {
-    console.log('change true');
   return {
-    type: CHANGE_USER_CENTER_T
+    type: CHANGE_USER_CENTER_T,
   };
 };
 
 export const changeCenterFalse = () => {
-    console.log('change false');
-    return {
-      type: CHANGE_USER_CENTER_F
-    };
+  return {
+    type: CHANGE_USER_CENTER_F,
   };
-  
+};
+
+export const addCovidCases = (covidData) => {
+  return (dispatch, getState) => {
+    const { id } = getState().idCovidData;
+
+    console.log(covidData);
+    console.log(id);
+
+    //need the dispatch to call async getState from another state within the market
+    dispatch({ type: ADD_CASES, payload: { ...covidData, id } });
+  };
+};
+
+export const increaseIDCovid = () => {
+  return {
+    type: INCREASE_ID_COVID_DATA,
+    payload: 1,
+  };
+};

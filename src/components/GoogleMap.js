@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
-import { changeCenterFalse } from "../actions";
+import { changeCenterFalse,addCovidCases,increaseIDCovid} from "../actions";
 
 import googleMarker from "./tools/googleMarker";
 import renderMarkers from "./tools/renderMarkers";
 import radiusCircle from "./tools/radiusCircle";
-import changeCenter from "./tools/changeCenter";
+// import changeCenter from "./tools/changeCenter";
+import changeRadiusCenter from "./tools/changeRadiusCenter";
+import covidCaseMarker from "./tools/covidCaseMarker";
 import zoomListener from "./tools/zoomListener";
 
 const GoogleMap = (props) => {
   const [ctrCoord, setCtrCoord] = useState({ lat: 37.795932, lng: -122.39371 });
+  const [covidCaseCoord, setCovidCaseCoord] = useState({});
 
   //TODO: to need change map zoom based on radius
   const [radiusState, setRadiusState] = useState(500); //radius map in meters
@@ -29,15 +32,35 @@ const GoogleMap = (props) => {
       renderMarkers(googleMap, ctrCoord, props.covidCases, radiusState);
       radiusCircle(googleMap, ctrCoord, radiusState);
       zoomListener(googleMap, setZoomState);
+
       userChangeCenter(googleMap, ctrCoord, setCtrCoord, props.changeCenterFalse);
+
+
+
+      covidCaseMarker(googleMap,setCovidCaseCoord);
+    
+    //   console.log(Object.keys(newCovidCase).length !== 0);
+    
+        if(Object.keys(covidCaseCoord).length !== 0){
+            props.addCovidCases(covidCaseCoord);
+            props.increaseIDCovid();
+            setCovidCaseCoord({});
+        }
+  
     });
   });
 
   const userChangeCenter = (map, ctrCoord, setCtrCoord, changeCenterFalse) => {
     return props.userCenterStatus
-      ? changeCenter(map, ctrCoord, setCtrCoord, changeCenterFalse)
+      ? changeRadiusCenter(map, ctrCoord, setCtrCoord, changeCenterFalse)
       : null;
   };
+
+
+
+
+
+
 
   const createGoogleMap = () => {
     //googleMapRef.current access the ref - similar to document.getElementById
@@ -64,7 +87,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {changeCenterFalse})(GoogleMap);
+export default connect(mapStateToProps, {changeCenterFalse,addCovidCases,increaseIDCovid})(GoogleMap);
 
 // },[latState,lngState]);
 //need to fix to get map to render once and wait to get the lng and lat of location

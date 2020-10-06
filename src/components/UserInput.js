@@ -9,8 +9,8 @@ const UserInput = (props)=>{
         console.log(props.changeUserCenter);
     }
 
-    const newCenterBtn = () =>{
-        return <button onClick = {()=>changeCenterStatus()} className="">Choose New Center</button>
+    const newCovidCase = () =>{
+        return <button onClick = {()=>props.changeCenterTrue()} className="">Choose New Center</button>
     }
 
 
@@ -20,7 +20,8 @@ const UserInput = (props)=>{
     return (
         <div className="user-input margin-around-large">
             hi
-            {newCenterBtn()}
+            <button onClick = {()=>props.changeCenterTrue()} className="">Choose New Center</button>
+            
         </div>
     )
 }
