@@ -1,0 +1,35 @@
+const stateCoord = [
+  { state: "WI", lat: 44.5, lng: -89.5 },
+  { state: "WV", lat: 39.0, lng: -80.5 },
+  { state: "VT", lat: 44.0, lng: -72.699997 },
+  { state: "TX", lat: 31.0, lng: -100.0 },
+  { state: "SD", lat: 44.5, lng: -100.0 },
+  { state: "RI", lat: 41.700001, lng: -71.5 },
+  { state: "OR", lat: 44.0, lng: -120.5 },
+  { state: "NY", lat: 43.0, lng: -75.0 },
+  { state: "NH", lat: 44.0, lng: -71.5 },
+  { state: "NE", lat: 41.5, lng: -100.0 },
+  { state: "KS", lat: 38.5, lng: -98.0 },
+  { state: "MS", lat: 33.0, lng: -90.0 },
+  { state: "IL", lat: 40.0, lng: -89.0 },
+  { state: "DE", lat: 39.0, lng: -75.5 },
+  { state: "CT", lat: 41.599998, lng: -72.699997 },
+  { state: "AR", lat: 34.799999, lng: -92.199997 },
+  { state: "IN", lat: 40.273502, lng: -86.126976 },
+  { state: "MI", lat: 38.573936, lng: -92.60376 },
+  { state: "FL", lat: 27.994402, lng: -81.760254 },
+  { state: "NV", lat: 39.876019, lng: -117.224121 },
+  { state: "ME", lat: 45.367584, lng: -68.972168 },
+  { state: "MI", lat: 44.182205, lng: -84.506836 },
+  { state: "GA", lat: 33.247875, lng: -83.441162 },
+  { state: "HI", lat: 19.741755, lng: -155.844437 },
+  { state: "AK", lat: 66.160507, lng: -153.369141 },
+
+  { state: "AR", lat: 34.048927, lng: -111.093735 },
+  { state: "AL", lat: 32.31823, lng: -86.902298 },
+  { state: "MA", lat: 42.407211, lng: -71.382439 },
+  { state: "CA", lat: 36.778259, lng: -119.417931 },
+
+];
+
+export default stateCoord;

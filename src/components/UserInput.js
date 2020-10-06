@@ -40,11 +40,12 @@ const UserInput = (props) => {
 
   return (
     <div className="user-input">
-      hi
+
       <br />
       {renderChangeCenterBtn()}
       <br />
       {renderAddCovidBtn()}
+      <p className="">Covid cases around you: {props.covidCountWithinRadius}</p>
     </div>
   );
 };
@@ -55,6 +56,7 @@ const mapStateToProps = (state) => {
     covidCases: state.covidCases, //centralized data for covid cases
     changeUserCenter: state.userSettings.changeUserCenter,
     addCovidMode: state.userSettings.addCovidMode,
+    covidCountWithinRadius:state.covidCountWithinRadius
   };
 };
 
