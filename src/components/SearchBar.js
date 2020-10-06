@@ -58,14 +58,6 @@ class SearchBar extends React.Component {
 }
 
 
-const mapStateToProps = (state) => {
-      console.log(state);
-    return {
-      covidCases: state.covidCases, //centralized data for covid cases
-      userCenterStatus: state.userSettings.changeUserCenter,
-      addCovidMode: state.userSettings.addCovidMode,
-    };
-  };
 
 
-export default connect(mapStateToProps, { getCovidAPICases })(SearchBar);
+export default connect(null, { getCovidAPICases })(SearchBar);

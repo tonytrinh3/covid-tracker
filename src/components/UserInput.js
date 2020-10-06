@@ -50,7 +50,7 @@ const UserInput = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  //console.log(state);
   return {
     covidCases: state.covidCases, //centralized data for covid cases
     changeUserCenter: state.userSettings.changeUserCenter,

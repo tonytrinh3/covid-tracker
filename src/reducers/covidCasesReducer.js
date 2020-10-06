@@ -12,8 +12,6 @@ export default (state = INITIAL_STATE, action) => {
       return [...state, action.payload];
     case SUBTRACT_CASES:
       return [...state, action.payload];
-    case API_COVID_CASES:
-        return action.payload;
     default:
       return state;
   }
