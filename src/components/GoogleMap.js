@@ -52,14 +52,19 @@ const GoogleMap = (props) => {
         setCtrCoord,
         props.changeCenterFalse
       );
+
+    //   if(Object.keys(props.covidAPICases).length !== 0){
+    //     statesCoord.map((state) => {
+    //         //console.log(state["state"])
+    //         console.log(props.covidAPICases["state"]===state["state"])
+    //       if (props.covidAPICases["state"] === state["state"]) {
+    //         setCtrCoord({ lat:state.lat, lng: state.lng });
+    //       setZoomState(4)
+    //       }
+    //     });
+    //   }
    
-      statesCoord.map((state) => {
-          //console.log(state["state"])
-          console.log(props.covidAPICases["state"]===state["state"])
-        // if (props.covidAPICases["state"] === state["state"]) {
-        //   setCtrCoord({ lat:state.lat, lng: state.lng });
-        // }
-      });
+    
 
       if (props.addCovidMode === true) {
         covidCaseMarker(googleMap, setCovidCaseCoord);

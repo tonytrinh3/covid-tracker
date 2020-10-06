@@ -63,18 +63,20 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="search-bar">
-        <p className="">Search by State Initials for COVID Cases</p>
+        {/* <h4 className="">Search by State Initials for COVID Cases</h4> */}
         <form action="" onSubmit={this.handleSubmit}>
           <input
             type="text"
             value={this.state.value}
             onChange={this.handleChange}
             className = "input-default"
+            placeholder="Search by State Initials for COVID Cases"
+
           />
           {/* <button onClick = {this.handleSubmit} >Submit</button> */}
           <input type="submit" value="Submit" className= "button" />
         </form>
-        {this.state.errorResults ? <p className="error-statement">No results. Please check your input</p> : null}
+        {/* {this.state.errorResults ? <p className="error-statement">No results. Please check your input</p> : null} */}
       </div>
     );
   }

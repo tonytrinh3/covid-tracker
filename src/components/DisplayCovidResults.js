@@ -6,15 +6,15 @@ const DisplayCovidResults = (props) => {
     if (Object.keys(props.covidAPICases).length === 0) {
       return (
         <div className="covid-results">
-          <p className="">State: </p>
-          <p className="">COVID Positive Cases: </p>
+          <h3 className="">State: </h3>
+          <h3 className="">COVID Positive Cases: </h3>
         </div>
       );
     }
     return (
       <div className="covid-results">
-        <p className="">State: {props.covidAPICases.state}</p>
-        <p className="">COVID Positive Cases: {props.covidAPICases.positive}</p>
+        <h3 className="">State: {props.covidAPICases.state}</h3>
+        <h3 className="">COVID Positive Cases: {props.covidAPICases.positive}</h3>
       </div>
     );
   };
