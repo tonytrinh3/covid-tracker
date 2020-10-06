@@ -17,9 +17,19 @@ class SearchBar extends React.Component {
     const { data } = await axios.get(
       "https://api.covidtracking.com/v1/states/current.json"
     );
-    console.log(data);
-    this.setState({ searchResult: data });
-    this.props.getCovidAPICases(data);
+
+    // this.setState({ searchResult: data });
+    console.log(this.state.searchResult);
+
+    data.map((state, i) => {
+      // console.log(state["state"]);
+      if (this.state.searchResult == state["state"]) {
+        this.props.getCovidAPICases(state);
+      }
+      return [];
+    });
+
+    console.log(data[0]["state"] == this.state.searchResult);
   }; // you get the respone from this function
 
   handleChange = (event) => {
@@ -28,6 +38,7 @@ class SearchBar extends React.Component {
 
   handleSubmit = (event) => {
     this.setState({
+      searchResult: this.state.value.toUpperCase(),
       value: "",
     });
 
@@ -35,14 +46,13 @@ class SearchBar extends React.Component {
       this.onSearch();
     }
 
-    console.log(this.state.value);
     event.preventDefault(); //this is to avoid page from refreshing when you press submit
   };
 
   render() {
     return (
       <div className="search-bar">
-        <p className="">Search by State Names for COVID Cases</p>
+        <p className="">Search by State Initials for COVID Cases</p>
         <form action="" onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -56,8 +66,5 @@ class SearchBar extends React.Component {
     );
   }
 }
-
-
-
 
 export default connect(null, { getCovidAPICases })(SearchBar);
