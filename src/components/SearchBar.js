@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -6,8 +7,17 @@ class SearchBar extends React.Component {
 
     this.state = {
       value: "",
+      searchResult: "",
     };
   }
+
+  onSearch = async () => {
+    const { data } = await axios.get(
+      "https://api.covidtracking.com/v1/states/current.json"
+    );
+    console.log(data);
+    this.setState({ searchResult: data });
+  }; // you get the respone from this function
 
   handleChange = (event) => {
     this.setState({ value: event.target.value });
@@ -17,6 +27,11 @@ class SearchBar extends React.Component {
     this.setState({
       value: "",
     });
+
+    if (this.state.value.length > 0) {
+      this.onSearch();
+    }
+
     console.log(this.state.value);
     event.preventDefault(); //this is to avoid page from refreshing when you press submit
   };
