@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import GoogleMap from './components/GoogleMap';
+import UserInput from './components/UserInput';
 import './sass/main.scss';
 
 class App extends Component{
@@ -8,7 +9,7 @@ class App extends Component{
     return(
       <div>
         <GoogleMap/>
-
+        <UserInput/>
       </div>
     )
   }

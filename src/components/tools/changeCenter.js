@@ -1,4 +1,6 @@
-const changeCenter = (map,ctrCoord,setCtrCoord) => {
+
+
+const changeCenter = (map,ctrCoord,setCtrCoord,changeCenterFalse, userCenterStatus) => {
     let infoWindow = new window.google.maps.InfoWindow({
     //   content: "Click the map to get Lat/Lng!",
       position: ctrCoord,
@@ -20,9 +22,11 @@ const changeCenter = (map,ctrCoord,setCtrCoord) => {
 
       newCoordObj["lat"] = parseFloat(newCoord[0]);
       newCoordObj["lng"] = parseFloat(newCoord[1]);
-      console.log(newCoordObj);
-
+      
+      console.log(userCenterStatus);
       setCtrCoord(newCoordObj);
+      changeCenterFalse()
+      console.log(userCenterStatus);
 
       infoWindow.setContent(mapsMouseEvent.latLng.toString());
       infoWindow.open(map);

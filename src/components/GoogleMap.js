@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
+import { changeCenterFalse } from "../actions";
 
 import googleMarker from "./tools/googleMarker";
-import renderMarkers from './tools/renderMarkers';
+import renderMarkers from "./tools/renderMarkers";
 import radiusCircle from "./tools/radiusCircle";
-import changeCenter from './tools/changeCenter';
-import zoomListener from './tools/zoomListener';
-
+import changeCenter from "./tools/changeCenter";
+import zoomListener from "./tools/zoomListener";
 
 const GoogleMap = (props) => {
   const [ctrCoord, setCtrCoord] = useState({ lat: 37.795932, lng: -122.39371 });
@@ -17,57 +17,54 @@ const GoogleMap = (props) => {
 
   const googleMapRef = useRef();
 
-
-
   useEffect(() => {
     //just adding the google map script to the html body
     const googleMapScript = document.createElement("script");
     googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP}&libraries=places`;
     window.document.body.appendChild(googleMapScript);
-  
 
     googleMapScript.addEventListener("load", () => {
       const googleMap = createGoogleMap();
       googleMarker(googleMap, ctrCoord);
-      renderMarkers(googleMap, ctrCoord, props.covidCases,radiusState);
+      renderMarkers(googleMap, ctrCoord, props.covidCases, radiusState);
       radiusCircle(googleMap, ctrCoord, radiusState);
-      changeCenter(googleMap,ctrCoord,setCtrCoord);
-      zoomListener(googleMap,setZoomState);
-
+      zoomListener(googleMap, setZoomState);
+      userChangeCenter(googleMap, ctrCoord, setCtrCoord, props.changeCenterFalse);
     });
   });
 
+  const userChangeCenter = (map, ctrCoord, setCtrCoord, changeCenterFalse) => {
+    return props.userCenterStatus
+      ? changeCenter(map, ctrCoord, setCtrCoord, changeCenterFalse)
+      : null;
+  };
 
-   
-
-  const createGoogleMap = () =>{
+  const createGoogleMap = () => {
     //googleMapRef.current access the ref - similar to document.getElementById
     return new window.google.maps.Map(googleMapRef.current, {
-        zoom: zoomState,
-        center: {
-          lat: ctrCoord.lat,
-          lng: ctrCoord.lng,
-        },
-        //   disableDefaultUI: true,
-      });
-  }
+      zoom: zoomState,
+      center: {
+        lat: ctrCoord.lat,
+        lng: ctrCoord.lng,
+      },
+      //   disableDefaultUI: true,
+    });
+  };
 
-
-
-  return <div className="google-map" ref={googleMapRef}></div>;
+  return (
+    <div className="google-map margin-around-large" ref={googleMapRef}></div>
+  );
 };
 
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    covidCases: state.covidCases, //centralized data for covid cases
+    userCenterStatus: state.userSettings.changeUserCenter,
+  };
+};
 
-const mapStateToProps = (state) =>{
-    console.log(state);
-    return {
-        covidCases: state.covidCases //centralized data for covid cases
-    }
-}
-
-
-
-export default connect(mapStateToProps,null)(GoogleMap);
+export default connect(mapStateToProps, {changeCenterFalse})(GoogleMap);
 
 // },[latState,lngState]);
 //need to fix to get map to render once and wait to get the lng and lat of location
