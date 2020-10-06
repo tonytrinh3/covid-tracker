@@ -6,6 +6,8 @@ import {
   ADD_USER_COVID_REPORT,
   SUBTRACT_USER_COVID_REPORT,
   INCREASE_ID_COVID_DATA,
+  ADD_COVID_MODE_T ,
+  ADD_COVID_MODE_F
 } from "./types";
 
 export const changeCenterTrue = () => {
@@ -19,6 +21,19 @@ export const changeCenterFalse = () => {
     type: CHANGE_USER_CENTER_F,
   };
 };
+
+export const addCovidModeTrue = () => {
+    return {
+      type: ADD_COVID_MODE_T,
+    };
+  };
+  
+  export const addCovidModeFalse = () => {
+    return {
+      type: ADD_COVID_MODE_F,
+    };
+  };
+
 
 export const addCovidCases = (covidData) => {
   return (dispatch, getState) => {

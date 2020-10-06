@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
-import { changeCenterFalse,addCovidCases,increaseIDCovid} from "../actions";
+import { changeCenterFalse, addCovidCases, increaseIDCovid } from "../actions";
 
 import googleMarker from "./tools/googleMarker";
 import renderMarkers from "./tools/renderMarkers";
 import radiusCircle from "./tools/radiusCircle";
-// import changeCenter from "./tools/changeCenter";
 import changeRadiusCenter from "./tools/changeRadiusCenter";
 import covidCaseMarker from "./tools/covidCaseMarker";
 import zoomListener from "./tools/zoomListener";
@@ -30,37 +29,39 @@ const GoogleMap = (props) => {
       const googleMap = createGoogleMap();
       googleMarker(googleMap, ctrCoord);
       renderMarkers(googleMap, ctrCoord, props.covidCases, radiusState);
-      radiusCircle(googleMap, ctrCoord, radiusState);
+      renderRadiusLogic(googleMap, ctrCoord, radiusState);
       zoomListener(googleMap, setZoomState);
 
-      userChangeCenter(googleMap, ctrCoord, setCtrCoord, props.changeCenterFalse);
+      userChangeCenter(
+        googleMap,
+        ctrCoord,
+        setCtrCoord,
+        props.changeCenterFalse
+      );
 
-
-
-      covidCaseMarker(googleMap,setCovidCaseCoord);
-    
-    //   console.log(Object.keys(newCovidCase).length !== 0);
-    
-        if(Object.keys(covidCaseCoord).length !== 0){
-            props.addCovidCases(covidCaseCoord);
-            props.increaseIDCovid();
-            setCovidCaseCoord({});
+      if (props.addCovidMode === true) {
+        covidCaseMarker(googleMap, setCovidCaseCoord);
+        if (Object.keys(covidCaseCoord).length !== 0) {
+          props.addCovidCases(covidCaseCoord);
+          props.increaseIDCovid();
+          setCovidCaseCoord({});
         }
-  
+      }
     });
   });
+
+  const renderRadiusLogic = (googleMap, ctrCoord, radiusState) => {
+    if (props.addCovidMode === false) {
+      return radiusCircle(googleMap, ctrCoord, radiusState);
+    }
+    return null;
+  };
 
   const userChangeCenter = (map, ctrCoord, setCtrCoord, changeCenterFalse) => {
     return props.userCenterStatus
       ? changeRadiusCenter(map, ctrCoord, setCtrCoord, changeCenterFalse)
       : null;
   };
-
-
-
-
-
-
 
   const createGoogleMap = () => {
     //googleMapRef.current access the ref - similar to document.getElementById
@@ -80,14 +81,19 @@ const GoogleMap = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  //   console.log(state);
   return {
     covidCases: state.covidCases, //centralized data for covid cases
     userCenterStatus: state.userSettings.changeUserCenter,
+    addCovidMode: state.userSettings.addCovidMode,
   };
 };
 
-export default connect(mapStateToProps, {changeCenterFalse,addCovidCases,increaseIDCovid})(GoogleMap);
+export default connect(mapStateToProps, {
+  changeCenterFalse,
+  addCovidCases,
+  increaseIDCovid,
+})(GoogleMap);
 
 // },[latState,lngState]);
 //need to fix to get map to render once and wait to get the lng and lat of location
