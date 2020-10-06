@@ -53,18 +53,16 @@ const GoogleMap = (props) => {
         props.changeCenterFalse
       );
 
-    //   if(Object.keys(props.covidAPICases).length !== 0){
-    //     statesCoord.map((state) => {
-    //         //console.log(state["state"])
-    //         console.log(props.covidAPICases["state"]===state["state"])
-    //       if (props.covidAPICases["state"] === state["state"]) {
-    //         setCtrCoord({ lat:state.lat, lng: state.lng });
-    //       setZoomState(4)
-    //       }
-    //     });
-    //   }
-   
-    
+      //       if(Object.keys(props.covidAPICases).length !== 0){
+      //   statesCoord.map((state) => {
+      //           //console.log(state["state"])
+      //           console.log(props.covidAPICases["state"]===state["state"])
+      //         // if (props.covidAPICases["state"] === state["state"]) {
+      //         //   setCtrCoord({ lat:state.lat, lng: state.lng });
+      //         //setZoomState(4)
+      //         // }
+      //       });
+      //       }
 
       if (props.addCovidMode === true) {
         covidCaseMarker(googleMap, setCovidCaseCoord);
@@ -98,7 +96,7 @@ const GoogleMap = (props) => {
         lat: ctrCoord.lat,
         lng: ctrCoord.lng,
       },
-         disableDefaultUI: true,
+      disableDefaultUI: true,
     });
   };
 
