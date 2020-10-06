@@ -1,22 +1,59 @@
-.booking-page {
-    display: grid;
+.main-page {
+  display: grid;
 
-    // grid-template-columns:[pile-start-column] minmax(22.6rem,1fr) 
-    // [pile-end-column play-area-start-column] minmax(50vw,2fr)
-    // [play-area-end-column deck-start-column] minmax(22.6rem,1fr)  [deck-end-column];
+  // grid-template-columns:[pile-start-column] minmax(22.6rem,1fr)
+  // [pile-end-column play-area-start-column] minmax(50vw,2fr)
+  // [play-area-end-column deck-start-column] minmax(22.6rem,1fr)  [deck-end-column];
 
-    grid-template-columns: [full-start] minmax(6rem, 1fr) 
-    [center-start] repeat(8, [col-start] minmax(min-content,14rem) [col-end]) [center-end] 
+  grid-template-columns:
+    [full-start] minmax(6rem, 1fr)
+    [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+    [center-end]
     minmax(6rem, 1fr) [full-end];
 
+  grid-template-rows: [banner-start] 25vh [banner-end] repeat(1fr,min-content) [footer-start]25vh [footer-end];
 
-    @media only screen and (max-width:$bp-largest){
-        grid-template-columns: [full-start] 2rem 
-        [center-start] repeat(8, [col-start] minmax(min-content,1fr) [col-end]) [center-end] 
-        2rem [full-end];
-      }
-  
+  // @media only screen and (max-width: $bp-largest) {
+  //   grid-template-columns:
+  //     [full-start] 2rem
+  //     [center-start] repeat(
+  //       8,
+  //       [col-start] minmax(min-content, 1fr) [col-end]
+  //     ) [center-end]
+  //     2rem [full-end];
+  // }
 
+  &__header {
+    grid-column: center-start/center-end;
+  }
 
+  &__body {
+    grid-column: center-start/center-end;
+    // grid-row: max-content;
+    grid-row: 2;
+    height: 80vh;
+    
+  }
+}
 
+.banner {
+  grid-column: full-start/full-end;
+  grid-row: 1;
+  background-color: $lyft-pink;
+  height: 10vh;
+
+  @media only screen and (max-width: $bp-hei-small) {
+    height:5vh;
+  }
+}
+
+.footer {
+  grid-column: full-start/full-end;
+  grid-row: 1000;
+  background-color: $lyft-pink;
+  height: 10vh;
+
+  @media only screen and (max-width: $bp-hei-small) {
+    height:5vh;
+  }
 }

@@ -11,13 +11,13 @@ const UserInput = (props) => {
   const renderAddCovidBtn = () => {
     if (props.addCovidMode === false) {
       return (
-        <button onClick={() => props.addCovidModeTrue()} className="">
+        <button onClick={() => props.addCovidModeTrue()} className="button">
           Report New Covid Case?
         </button>
       );
     } else {
       return (
-        <button onClick={() => props.addCovidModeFalse()} className="">
+        <button onClick={() => props.addCovidModeFalse()} className="button">
           Finish Reporting Cases?
         </button>
       );
@@ -27,13 +27,13 @@ const UserInput = (props) => {
   const renderChangeCenterBtn = () => {
     if (props.addCovidMode === false) {
       return (
-        <button onClick={() => props.changeCenterTrue()} className="">
+        <button onClick={() => props.changeCenterTrue()} className="button">
           Choose New Center
         </button>
       );
     } else {
       return (
-        <button className="">Choose New Center</button> //supposed to be greyed out
+        <button className="button">Choose New Center</button> //supposed to be greyed out
       );
     }
   };

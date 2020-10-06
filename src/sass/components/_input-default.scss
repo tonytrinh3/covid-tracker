@@ -1,0 +1,11 @@
+.input-default{
+    color:$form-input-color;
+    font-size: 2.5rem;
+    font-weight: 500;
+    border-radius:0.2rem;
+    border: 0.1rem solid $form-input-color;
+    padding: 1.5rem 0rem 1.5rem 1rem;
+    width: 100%; //https://stackoverflow.com/questions/11716330/how-to-expand-input-field-to-100-of-the-parent
+    -webkit-appearance: none;
+
+}

@@ -93,7 +93,7 @@ const GoogleMap = (props) => {
         lat: ctrCoord.lat,
         lng: ctrCoord.lng,
       },
-      //   disableDefaultUI: true,
+         disableDefaultUI: true,
     });
   };
 

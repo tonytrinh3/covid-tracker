@@ -5,21 +5,21 @@ const DisplayCovidResults = (props) => {
   const renderCovidResults = () => {
     if (Object.keys(props.covidAPICases).length === 0) {
       return (
-        <div className="ew">
+        <div className="covid-results">
           <p className="">State: </p>
           <p className="">COVID Positive Cases: </p>
         </div>
       );
     }
     return (
-      <div className="ew">
+      <div className="covid-results">
         <p className="">State: {props.covidAPICases.state}</p>
         <p className="">COVID Positive Cases: {props.covidAPICases.positive}</p>
       </div>
     );
   };
 
-  return <div className="wef">{renderCovidResults()}</div>;
+  return <React.Fragment>{renderCovidResults()}</React.Fragment>;
 };
 
 const mapStateToProps = (state) => {

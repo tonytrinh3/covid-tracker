@@ -1,34 +1,22 @@
 //font
 $default-font-size: 2rem;
 
-// $default-card-country-header-size: 2rem;
-
-// $default-font-rating-size: 2.3rem;
-
 
 //color
-$default-font-color:rgb(51, 51, 51);
+$default-font-color:rgb(17,17,31);
 
-$default-landing-page-color: rgba(0, 0, 0, 1);
-
-//https://usbrandcolors.com/airbnb-colors/
-$airbnb-default-color:rgba(255, 90, 95,1);
-$airbnb-default-color-light-grey:  rgba(118, 118, 118, 1);
-$airbnb-default-color-light-grey-hover:  lighten($airbnb-default-color-light-grey,40%);
-$airbnb-default-blue:rgba(0, 166, 153,1);
-$airbnb-default-orange:rgba(252, 100, 45,1);
-$airbnb-default-purple:rgba(116, 79, 149,1);
-
-$nav-font-color: white;
-
+$white-color: rgb(255, 255, 255);
+$lyft-pink: rgb(255, 0, 191);
+$lyft-black: rgb(17,17,31);
 $form-input-color: rgba(118, 118, 118, 1);
+
+
 
 //shadow
 /* offset-x | offset-y | blur-radius | spread-radius | color */
 //https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
 //https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_box-shadow
 $default-box-shadow: 0rem 0rem 2rem .1rem rgba(72, 72, 72, .4); 
-
 
 
 

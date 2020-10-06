@@ -5,7 +5,13 @@
 @import 'base/_typography';
 @import 'base/_utilities';
 
+
+
+@import 'components/buttons';
+@import 'components/input-default';
 @import 'components/google-map';
 @import 'components/user-input';
+@import 'components/covid-results';
+@import 'components/search-bar';
 
 @import 'pages/_main-page';

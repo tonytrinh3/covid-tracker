@@ -69,11 +69,12 @@ class SearchBar extends React.Component {
             type="text"
             value={this.state.value}
             onChange={this.handleChange}
+            className = "input-default"
           />
           {/* <button onClick = {this.handleSubmit} >Submit</button> */}
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" className= "button" />
         </form>
-        {this.state.errorResults ? <p className="error">No results. Please check your input</p> : null}
+        {this.state.errorResults ? <p className="error-statement">No results. Please check your input</p> : null}
       </div>
     );
   }
