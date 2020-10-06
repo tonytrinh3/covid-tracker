@@ -47,7 +47,7 @@ const UserInput = (props) => {
         {renderAddCovidBtn()}
       </div>
 
-      <p className="">Covid cases around you: {props.covidCountWithinRadius}</p>
+      <h4 className="">Covid cases around you: {props.covidCountWithinRadius}</h4>
     </div>
   );
 };
