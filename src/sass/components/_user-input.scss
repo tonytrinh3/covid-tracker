@@ -1,4 +1,8 @@
 .user-input{
     grid-column:center-start/center-end;
 
+    &__btn-row{
+        display: grid;
+        grid-auto-flow: column;
+    }
 }

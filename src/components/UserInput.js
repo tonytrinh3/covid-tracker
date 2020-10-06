@@ -42,9 +42,11 @@ const UserInput = (props) => {
     <div className="user-input">
 
       <br />
-      {renderChangeCenterBtn()}
-      <br />
-      {renderAddCovidBtn()}
+      <div className="user-input__btn-row">
+        {renderChangeCenterBtn()}
+        {renderAddCovidBtn()}
+      </div>
+
       <p className="">Covid cases around you: {props.covidCountWithinRadius}</p>
     </div>
   );

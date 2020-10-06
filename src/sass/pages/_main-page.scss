@@ -11,7 +11,7 @@
     [center-end]
     minmax(6rem, 1fr) [full-end];
 
-  grid-template-rows: [banner-start] 25vh [banner-end] repeat(1fr,min-content) [footer-start]25vh [footer-end];
+  grid-template-rows:  repeat(1fr,min-content) ;
 
   // @media only screen and (max-width: $bp-largest) {
   //   grid-template-columns:
@@ -31,8 +31,8 @@
   &__body {
     grid-column: center-start/center-end;
     // grid-row: max-content;
-    grid-row: 2;
-    height: 80vh;
+    grid-row: 3;
+    height: 84vh;
     
   }
 }
@@ -40,21 +40,21 @@
 .banner {
   grid-column: full-start/full-end;
   grid-row: 1;
-  background-color: $lyft-pink;
-  height: 10vh;
+  background-color: $banner-footer-color;
+  height: 8vh;
 
   @media only screen and (max-width: $bp-hei-small) {
-    height:5vh;
+    height:3vh;
   }
 }
 
 .footer {
   grid-column: full-start/full-end;
   grid-row: 1000;
-  background-color: $lyft-pink;
-  height: 10vh;
+  background-color: $banner-footer-color;
+  height: 8vh;
 
   @media only screen and (max-width: $bp-hei-small) {
-    height:5vh;
+    display: none;
   }
 }
