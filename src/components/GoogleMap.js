@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
-import { changeCenterFalse, addCovidCases, increaseIDCovid } from "../actions";
+import { changeCenterFalse, addCovidCases, increaseIDCovid,getCovidCountWithinRadius } from "../actions";
 
 import googleMarker from "./tools/googleMarker";
 import renderMarkers from "./tools/renderMarkers";
@@ -8,6 +8,7 @@ import radiusCircle from "./tools/radiusCircle";
 import changeRadiusCenter from "./tools/changeRadiusCenter";
 import covidCaseMarker from "./tools/covidCaseMarker";
 import zoomListener from "./tools/zoomListener";
+import casesRadiusCounter from './tools/casesRadiusCounter';
 
 const GoogleMap = (props) => {
   const [ctrCoord, setCtrCoord] = useState({ lat: 37.795932, lng: -122.39371 });
@@ -28,9 +29,11 @@ const GoogleMap = (props) => {
     googleMapScript.addEventListener("load", () => {
       const googleMap = createGoogleMap();
       googleMarker(googleMap, ctrCoord);
-      renderMarkers(googleMap, ctrCoord, props.covidCases, radiusState);
+      renderMarkers(googleMap, props.covidCases );
       renderRadiusLogic(googleMap, ctrCoord, radiusState);
       zoomListener(googleMap, setZoomState);
+      const countCovidRadius = casesRadiusCounter(ctrCoord,props.covidCases,radiusState);
+      props.getCovidCountWithinRadius(countCovidRadius);
 
       userChangeCenter(
         googleMap,
@@ -93,6 +96,7 @@ export default connect(mapStateToProps, {
   changeCenterFalse,
   addCovidCases,
   increaseIDCovid,
+  getCovidCountWithinRadius
 })(GoogleMap);
 
 // },[latState,lngState]);

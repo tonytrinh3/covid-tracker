@@ -4,6 +4,7 @@ import {
   API_COVID_CASES,
   CHANGE_USER_CENTER_T,
   CHANGE_USER_CENTER_F,
+  COVID_COUNT_WITHIN_RADIUS,
   ADD_USER_COVID_REPORT,
   SUBTRACT_USER_COVID_REPORT,
   INCREASE_ID_COVID_DATA,
@@ -41,6 +42,14 @@ export const getCovidAPICases = (covidAPIData) => {
     payload: covidAPIData
   };
 };
+
+export const getCovidCountWithinRadius = (covidCount) => {
+  return {
+    type: COVID_COUNT_WITHIN_RADIUS,
+    payload: covidCount
+  };
+};
+
 
 
 

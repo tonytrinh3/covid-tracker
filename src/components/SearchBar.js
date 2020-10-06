@@ -10,6 +10,7 @@ class SearchBar extends React.Component {
     this.state = {
       value: "",
       searchResult: "",
+      errorResults: false,
     };
   }
 
@@ -18,19 +19,29 @@ class SearchBar extends React.Component {
       "https://api.covidtracking.com/v1/states/current.json"
     );
 
-    // this.setState({ searchResult: data });
     console.log(this.state.searchResult);
 
-    data.map((state, i) => {
-      // console.log(state["state"]);
+    data.map((state) => {
+      //this is to filter through all results by search term
       if (this.state.searchResult == state["state"]) {
         this.props.getCovidAPICases(state);
+        this.setState({ errorResults: false });
+        console.log(this.state.errorResults)
       }
-      return [];
+      return this.setState({ errorResults: true });
     });
 
     console.log(data[0]["state"] == this.state.searchResult);
   }; // you get the respone from this function
+
+  errorHandler = () => {
+
+    if (this.state.errorResults) {
+      return <p className="error">No results. Please check your input</p>;
+    } else if (!this.state.errorResults){
+      return null;
+    }
+  };
 
   handleChange = (event) => {
     this.setState({ value: event.target.value });
@@ -62,6 +73,7 @@ class SearchBar extends React.Component {
           {/* <button onClick = {this.handleSubmit} >Submit</button> */}
           <input type="submit" value="Submit" />
         </form>
+        {this.state.errorResults? <p className="error">No results. Please check your input</p> : null}
       </div>
     );
   }

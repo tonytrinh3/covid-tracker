@@ -1,9 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 
+const DisplayCovidResults = (props) => {
+  const renderCovidResults = () => {
+    if (Object.keys(props.covidAPICases).length === 0) {
+      return (
+        <div className="ew">
+          <p className="">State: </p>
+          <p className="">COVID Positive Cases: </p>
+        </div>
+      );
+    }
+    return (
+      <div className="ew">
+        <p className="">State: {props.covidAPICases.state}</p>
+        <p className="">COVID Positive Cases: {props.covidAPICases.positive}</p>
+      </div>
+    );
+  };
 
-const DisplayCovidResults = () => {
-  return <div className="ew">display results</div>;
+  return <div className="wef">{renderCovidResults()}</div>;
 };
 
 const mapStateToProps = (state) => {
@@ -11,7 +27,7 @@ const mapStateToProps = (state) => {
   return {
     covidCases: state.covidCases, //centralized data for covid cases
     covidAPICases: state.covidAPICases,
-    userCenterStatus: state.userSettings.changeUserCenter
+    userCenterStatus: state.userSettings.changeUserCenter,
   };
 };
 
