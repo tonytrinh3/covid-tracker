@@ -39,7 +39,7 @@ const UserInput = (props) => {
   };
 
   return (
-    <div className="user-input margin-around-large">
+    <div className="user-input">
       hi
       <br />
       {renderChangeCenterBtn()}

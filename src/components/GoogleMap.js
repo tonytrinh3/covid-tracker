@@ -76,7 +76,7 @@ const GoogleMap = (props) => {
   };
 
   return (
-    <div className="google-map margin-around-large" ref={googleMapRef}></div>
+    <div className="google-map" ref={googleMapRef}></div>
   );
 };
 

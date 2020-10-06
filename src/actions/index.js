@@ -1,13 +1,14 @@
 import {
   ADD_CASES,
   SUBTRACT_CASES,
+  API_COVID_CASES,
   CHANGE_USER_CENTER_T,
   CHANGE_USER_CENTER_F,
   ADD_USER_COVID_REPORT,
   SUBTRACT_USER_COVID_REPORT,
   INCREASE_ID_COVID_DATA,
-  ADD_COVID_MODE_T ,
-  ADD_COVID_MODE_F
+  ADD_COVID_MODE_T,
+  ADD_COVID_MODE_F,
 } from "./types";
 
 export const changeCenterTrue = () => {
@@ -23,16 +24,25 @@ export const changeCenterFalse = () => {
 };
 
 export const addCovidModeTrue = () => {
-    return {
-      type: ADD_COVID_MODE_T,
-    };
+  return {
+    type: ADD_COVID_MODE_T,
   };
-  
-  export const addCovidModeFalse = () => {
-    return {
-      type: ADD_COVID_MODE_F,
-    };
+};
+
+export const addCovidModeFalse = () => {
+  return {
+    type: ADD_COVID_MODE_F,
   };
+};
+
+export const getCovidAPICases = (covidAPIData) => {
+  return {
+    type: API_COVID_CASES,
+    payload: covidAPIData
+  };
+};
+
+
 
 
 export const addCovidCases = (covidData) => {

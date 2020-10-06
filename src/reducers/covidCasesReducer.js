@@ -1,4 +1,4 @@
-import { ADD_CASES, SUBTRACT_CASES } from "../actions/types";
+import { ADD_CASES, SUBTRACT_CASES ,API_COVID_CASES} from "../actions/types";
 
 const INITIAL_STATE = [
   { id: 1,lat: 37.792649, lng: -122.392221 },
@@ -12,6 +12,8 @@ export default (state = INITIAL_STATE, action) => {
       return [...state, action.payload];
     case SUBTRACT_CASES:
       return [...state, action.payload];
+    case API_COVID_CASES:
+        return action.payload;
     default:
       return state;
   }

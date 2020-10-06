@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { getCovidAPICases } from "../actions";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class SearchBar extends React.Component {
     );
     console.log(data);
     this.setState({ searchResult: data });
+    this.props.getCovidAPICases(data);
   }; // you get the respone from this function
 
   handleChange = (event) => {
@@ -38,7 +41,8 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className="search-bar margin-around-large">
+      <div className="search-bar">
+        <p className="">Search by State Names for COVID Cases</p>
         <form action="" onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -53,4 +57,15 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar;
+
+const mapStateToProps = (state) => {
+      console.log(state);
+    return {
+      covidCases: state.covidCases, //centralized data for covid cases
+      userCenterStatus: state.userSettings.changeUserCenter,
+      addCovidMode: state.userSettings.addCovidMode,
+    };
+  };
+
+
+export default connect(mapStateToProps, { getCovidAPICases })(SearchBar);
